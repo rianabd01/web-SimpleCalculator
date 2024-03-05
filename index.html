@@ -4,25 +4,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <input type="text" id="cal" value="0" />
-    <button value="0" onclick="numbersValue(0)">0</button>
-    <button value="1" onclick="numbersValue(1)">1</button>
-    <button value="2" onclick="numbersValue(2)">2</button>
-    <button value="3" onclick="numbersValue(3)">3</button>
-    <button value="4" onclick="numbersValue(4)">4</button>
-    <button value="5" onclick="numbersValue(5)">5</button>
-    <button value="6" onclick="numbersValue(6)">6</button>
-    <button value="7" onclick="numbersValue(7)">7</button>
-    <button value="8" onclick="numbersValue(8)">8</button>
-    <button value="9" onclick="numbersValue(9)">9</button>
-    <button value="+" onclick="operators('+')">+</button>
-    <button value="-" onclick="operators('-')">-</button>
-    <button value="*" onclick="operators('*')">*</button>
-    <button value="/" onclick="operators('/')">/</button>
-    <button value="=" onclick="result()">=</button>
-    <button value="C" onclick="deleteVal()">C</button>
+    <main>
+      <input type="text" id="cal" value="0" readonly />
+      <div class="value">
+        <button value="C" onclick="deleteVal()">C</button>
+        <button value="+" onclick="operators('+')">+</button>
+        <button value="-" onclick="operators('-')">-</button>
+        <button value="*" onclick="operators('*')">*</button>
+        <button value="7" onclick="numbersValue(7)">7</button>
+        <button value="8" onclick="numbersValue(8)">8</button>
+        <button value="9" onclick="numbersValue(9)">9</button>
+        <button value="/" onclick="operators('/')">/</button>
+        <button value="4" onclick="numbersValue(4)">4</button>
+        <button value="5" onclick="numbersValue(5)">5</button>
+        <button value="6" onclick="numbersValue(6)">6</button>
+        <button><=</button>
+        <button value="1" onclick="numbersValue(1)">1</button>
+        <button value="2" onclick="numbersValue(2)">2</button>
+        <button value="3" onclick="numbersValue(3)">3</button>
+        <button value="." onclick="numbersValue(9)">.</button>
+        <button value="0" onclick="numbersValue(0)">0</button>
+        <button value="=" id="result" onclick="result()">=</button>
+      </div>
+    </main>
   </body>
   <script src="script.js" async></script>
 </html>
