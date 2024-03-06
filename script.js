@@ -43,14 +43,16 @@ function numbersValue(n) {
 }
 
 function decimalValue(dot) {
-  if (!isOperatored && !isDecimal) {
-    val1 += dot;
-    calculator.value = val1 + operatorType;
-    isDecimal = true;
-  } else if (isOperatored && !isDecimal2) {
-    val2 += dot;
-    calculator.value = val1 + operatorType + val2;
-    isDecimal2 = true;
+  if (hasil != errorMessage) {
+    if (!isOperatored && !isDecimal) {
+      val1 += dot;
+      calculator.value = val1 + operatorType;
+      isDecimal = true;
+    } else if (isOperatored && !isDecimal2) {
+      val2 += dot;
+      calculator.value = val1 + operatorType + val2;
+      isDecimal2 = true;
+    }
   }
 }
 
@@ -73,9 +75,9 @@ function operators(op) {
 }
 
 function result() {
-  if (hasil == errorMessage || !Number(val2)) {
+  if (hasil == errorMessage || !val2) {
     calculator.value = val1 || "0";
-  } else if (Number(val2)) {
+  } else if (val2) {
     if (operatorType == "+") {
       hasil = Number(val1) + Number(val2);
     } else if (operatorType == "-") {
@@ -85,12 +87,11 @@ function result() {
     } else if (operatorType == "/") {
       hasil = Number(val1) / Number(val2);
     }
+    if (hasil == Infinity) {
+      hasil = errorMessage;
+    }
     val1 = hasil.toString();
     calculator.value = val1;
-  }
-
-  if (hasil == Infinity) {
-    hasil = errorMessage;
   }
 
   if (calculator.value.includes(".")) {
@@ -112,29 +113,31 @@ function result() {
 }
 
 function backSpace() {
-  if (val2 || isDecimal2) {
-    val2 = val2.slice(0, -1);
-    calculator.value = val1 + operatorType + val2;
-    // if (val2 === "0") {
-    //   val2 = "";
-    // }
-    if (!val2.includes(".")) {
-      isDecimal2 = false;
+  if (hasil != errorMessage) {
+    if (val2 || isDecimal2) {
+      val2 = val2.slice(0, -1);
+      calculator.value = val1 + operatorType + val2;
+      // if (val2 === "0") {
+      //   val2 = "";
+      // }
+      if (!val2.includes(".")) {
+        isDecimal2 = false;
+      }
+      console.log("Value 2 =", val2);
+    } else if (!val2 && isOperatored) {
+      isOperatored = false;
+      operatorType = "";
+      calculator.value = val1 + operatorType + val2;
+    } else if (!isOperatored) {
+      val1 = val1.slice(0, -1);
+      calculator.value = val1 + operatorType;
+      console.log("Value 1 =", val1);
+      if (!val1.includes(".")) {
+        isDecimal = false;
+      }
     }
-    console.log("Value 2 =", val2);
-  } else if (!val2 && isOperatored) {
-    isOperatored = false;
-    operatorType = "";
-    calculator.value = val1 + operatorType + val2;
-  } else if (!isOperatored) {
-    val1 = val1.slice(0, -1);
-    calculator.value = val1 + operatorType;
-    console.log("Value 1 =", val1);
-    if (!val1.includes(".")) {
-      isDecimal = false;
-    }
+    console.log(isDecimal);
   }
-  console.log(isDecimal);
 }
 
 function deleteVal() {
