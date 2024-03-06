@@ -100,7 +100,7 @@ function result() {
   }
 
   //Reset Variables
-  val2 = "0";
+  val2 = "";
   operatorType = "";
   minValue = false;
   isOperatored = false;
@@ -112,17 +112,17 @@ function result() {
 }
 
 function backSpace() {
-  if (Number(val2) || isDecimal2) {
+  if (val2 || isDecimal2) {
     val2 = val2.slice(0, -1);
     calculator.value = val1 + operatorType + val2;
-    if (val2 === "0") {
-      val2 = "";
-    }
+    // if (val2 === "0") {
+    //   val2 = "";
+    // }
     if (!val2.includes(".")) {
       isDecimal2 = false;
     }
     console.log("Value 2 =", val2);
-  } else if (!Number(val2) && isOperatored) {
+  } else if (!val2 && isOperatored) {
     isOperatored = false;
     operatorType = "";
     calculator.value = val1 + operatorType + val2;
